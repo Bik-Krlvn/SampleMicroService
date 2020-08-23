@@ -44,7 +44,7 @@ Still on that topic though.
 A diagram of the architecture is shown below.
 
 ![Architecture Diagram](arch.png)
-> that's my best from viso, man that program is hard :sweat_smile: :sweat_smile:
+> that's my best from [MS Visio](https://en.m.wikipedia.org/wiki/Microsoft_Visio), man that program is hard :sweat_smile: :sweat_smile:
 
 This architecture implements the following Microservice Design Patterns:
 
