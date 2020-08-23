@@ -10,17 +10,24 @@ In order to generate protoc ts files install these library or related
 $ sudo apt-get install libprotobuf-dev protobuf-compiler 
 ```
 
-Nest-Cli
+## Nest-Cli
 ```console 
-$ yarn global add @nestjs/cli
+$ yarn global add @nestjs/cli 
 ```
-Docker 
-> You need docker to run this app
-# Installation
+
+## Docker
+Recommended to use docker
+
+# Docker Installation
 ```console
-yarn install
 docker-compose up --build -d
-yarn start:user
+```
+
+# Manual Installation
+You need to have Postgres Db installed and edit env accordingly
+```console
+$ yarn install
+$ yarn start:user
 ```
 
 ## Documentation
