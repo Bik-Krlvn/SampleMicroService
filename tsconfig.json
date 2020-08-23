@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "paths": {
+      "@service/common": [
+        "libs/common/src"
+      ],
+      "@service/common/*": [
+        "libs/common/src/*"
+      ],
+      "@service/proto-schema": [
+        "libs/proto-schema/src"
+      ],
+      "@service/proto-schema/*": [
+        "libs/proto-schema/src/*"
+      ],
+      "@service/contracts": [
+        "libs/contracts/src"
+      ],
+      "@service/contracts/*": [
+        "libs/contracts/src/*"
+      ],
+      "@service/core": [
+        "libs/core/src"
+      ],
+      "@service/core/*": [
+        "libs/core/src/*"
+      ]
+    }
+  }
+}

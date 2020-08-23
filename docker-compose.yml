@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  user-service-db:
+    container_name: user-service-db
+    image: postgres:9.6
+    restart: always
+    ports:
+      - ${DATABASE_PORT}:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  user-service:
+    container_name: user-service-api
+    build:
+      context: .
+      dockerfile: apps/user-service/Dockerfile
+      args:
+        NODE_ENV: development
+    image: "user-service:latest"
+    ports:
+      - 4000:4000
+    links:
+      - "user-service-db:database"
+    environment:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_HOST: user-service-db
+      DATABASE_PORT: ${DATABASE_PORT}
+      JWT_EXPIRE: ${JWT_EXPIRE}
+      JWT_SECRET: ${JWT_SECRET}
+      USER_SERVICE_PORT: 4000
+      USER_SERVICE_GRPC_URL: "0.0.0.0:5051"
+
+    restart: always
+    depends_on:
+      - user-service-db
+
+  eventstore:
+    container_name: eventstore
+    image: eventstore/eventstore:release-5.0.8
+    command: --dev --enable-external-tcp
+    ports:
+      - 2113:2113
+      - ${E_STORE_PORT}:1113
+    environment:
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+    volumes:
+      - ./esdata:/var/lib/eventstore/
+
+volumes:
+  pgdata:
+  esdata:

@@ -1,0 +1,7 @@
+pgdata
+esdata
+apps
+libs
+node_modules
+yarn-error.log
+dist
