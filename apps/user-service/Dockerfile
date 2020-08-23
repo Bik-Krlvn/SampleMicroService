@@ -1,6 +1,5 @@
 FROM node:12-alpine
-# set our node environment, either development or production
-# defaults to production, compose overrides this to development on build and run
+
 ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
@@ -9,9 +8,10 @@ ADD . /usr/src/app
 
 WORKDIR /usr/src/app
 
+RUN yarn global add @nestjs/cli
 
-
-
+# Build app
+RUN nest build
 
 # Bundle app source
 COPY . .
