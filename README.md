@@ -17,6 +17,7 @@ $ yarn global add @nestjs/cli
 
 # Installation
 ```console
+yarn install
 yarn start:user
 ```
 
