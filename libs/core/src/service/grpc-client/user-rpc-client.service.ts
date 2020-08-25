@@ -7,11 +7,11 @@ import { UserServiceClient } from '@service/proto-schema';
 export class UserRpcClientService {
   @Client(
     generateGrpcOptions({
-      url: '0.0.0.0:5051',
-      packageName: 'service.srv.user',
+      url: process.env.USER_SERVICE_GRPC_URL,
+      packageName: 'user',
       protoFileName: 'user.proto',
     }),
   )
-  private readonly client: ClientGrpc;
+  public  client: ClientGrpc;
   public svc: UserServiceClient<any>
 }

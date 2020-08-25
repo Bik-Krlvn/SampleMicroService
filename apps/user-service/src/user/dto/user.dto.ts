@@ -1,4 +1,4 @@
-import { IsString, IsEmail } from 'class-validator';
+import { IsString, IsEmail, IsUUID } from 'class-validator';
 import { UserInterface } from '../interface/user.interface';
 
 export class CreateUserDto implements UserInterface {
@@ -13,4 +13,9 @@ export class CreateUserDto implements UserInterface {
 
   @IsString()
   password: string;
+}
+
+export class FindUserDto{
+  @IsUUID('4')
+  userId:string
 }

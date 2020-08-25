@@ -12,12 +12,8 @@ export const generateGrpcOptions = (options: Options): GrpcOptions => {
     transport: Transport.GRPC,
     options: {
       url: options.url,
-      package: options.packageName,
-      protoPath: join(
-        process.cwd(),
-        `libs/proto-schema/src/proto/${options.protoFileName}`,
-      ),
-      loader: { arrays: true },
+      package: `service.srv.${options.packageName}`,
+      protoPath: join(process.cwd(), `dist/proto/${options.protoFileName}`),
     },
   };
 };

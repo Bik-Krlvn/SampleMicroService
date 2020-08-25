@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/user.dto';
+import { CreateUserDto, FindUserDto } from './dto/user.dto';
 import {
   CreateUserResponse,
   GetUserResponse,
@@ -11,13 +11,13 @@ import { GrpcMethod } from '@nestjs/microservices';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @GrpcMethod('UserService')
+  @GrpcMethod('UserService','createUser')
   async createUser(payload: CreateUserDto): Promise<CreateUserResponse> {
     return this.userService.createUser(payload);
   }
 
-  @GrpcMethod('UserService')
-  async getUser(userId: string): Promise<GetUserResponse> {
-    return this.userService.getUser(userId);
+  @GrpcMethod('UserService','getUser')
+  async getUser(payload:FindUserDto): Promise<GetUserResponse> {
+    return this.userService.getUser(payload.userId);
   }
 }
