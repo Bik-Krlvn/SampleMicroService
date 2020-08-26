@@ -15,7 +15,16 @@ export class CreateUserDto implements UserInterface {
   password: string;
 }
 
-export class FindUserDto{
+export class FindUserDto {
   @IsUUID('4')
-  userId:string
+  userId: string
+}
+
+
+export class LoginUserDto {
+  @IsString()
+  username: string
+
+  @IsString()
+  password: string
 }

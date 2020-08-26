@@ -21,7 +21,16 @@ export class RegisterInput {
 }
 
 @InputType()
-export class FindUserInput{
+export class FindUserInput {
     @Field()
-    userId:string
+    userId: string
+}
+
+@InputType()
+export class LoginInput {
+    @Field()
+    username: string
+
+    @Field()
+    password: string
 }
