@@ -7,9 +7,9 @@ export class CreateUserResponseType {
 }
 
 @ObjectType()
-export class UserMutation{}
+export class UserMutation { }
 
-@ObjectType()
+@ObjectType('GetUserResponse')
 export class GetUserResponseType {
     @Field()
     id: string;
@@ -25,4 +25,10 @@ export class GetUserResponseType {
 
     @Field()
     verificationCode: string;
+}
+
+@ObjectType('LoginResponse')
+export class LoginResponseType {
+    @Field()
+    accessToken: string
 }

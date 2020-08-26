@@ -1,13 +1,10 @@
 import { Injectable, Logger, Inject, OnModuleInit } from '@nestjs/common';
 import { CreateUserDto, CreateUserResponse, FindCurrentUserRequest, GetUserResponse } from '@service/proto-schema';
 import { ClientGrpc } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
+import { IUserService } from './interface/user.interface';
+import { PROVIDER } from '@service/common/constants';
 
 
-interface IUserService{
-  createUser(data:CreateUserDto):Observable<CreateUserResponse>
-  getUser(data:FindCurrentUserRequest):Observable<GetUserResponse>
-}
 @Injectable()
 /**
  * User service
@@ -18,10 +15,10 @@ export class UserService implements OnModuleInit {
    * Creates an instance of user service.
    * @param userRpcClient
    */
-  constructor(@Inject('USER_CLIENT') private readonly userRpcClient: ClientGrpc) { }
-  private  userService:IUserService
+  constructor(@Inject(PROVIDER.USER_CLIENT) private readonly userRpcClient: ClientGrpc) { }
+  private userService: IUserService
 
-  onModuleInit():void {
+  onModuleInit(): void {
     this.userService = this.userRpcClient.getService<IUserService>('UserService')
   }
   /**
